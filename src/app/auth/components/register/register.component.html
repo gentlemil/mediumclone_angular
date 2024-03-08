@@ -1,36 +1,42 @@
-<section
-  class="w-full container mx-auto flex flex-col justify-center items-center"
->
-  <a routerLink="/login">Have an account?</a>
-  <p>backend errors here</p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-[500px]">
-    <fieldset class="mb-2 w-full">
-      <input
-        type="text"
-        class="w-full"
-        placeholder="username"
-        formControlName="username"
-      />
-    </fieldset>
+<ng-container *ngIf="data$ | async as data">
+  <section
+    class="w-full container mx-auto flex flex-col justify-center items-center"
+  >
+    <a routerLink="/login">Have an account?</a>
+    <p>backend errors here</p>
+    <mc-backend-error-messages
+      [backendErrors]="data.backendErrors"
+      *ngIf="data.backendErrors"
+    ></mc-backend-error-messages>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-[500px]">
+      <fieldset class="mb-2 w-full">
+        <input
+          type="text"
+          class="w-full"
+          placeholder="username"
+          formControlName="username"
+        />
+      </fieldset>
 
-    <fieldset class="mb-2">
-      <input
-        type="text"
-        class="w-full"
-        placeholder="Email"
-        formControlName="email"
-      />
-    </fieldset>
+      <fieldset class="mb-2">
+        <input
+          type="text"
+          class="w-full"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </fieldset>
 
-    <fieldset class="mb-2">
-      <input
-        type="password"
-        class="w-full"
-        placeholder="password"
-        formControlName="password"
-      />
-    </fieldset>
+      <fieldset class="mb-2">
+        <input
+          type="password"
+          class="w-full"
+          placeholder="password"
+          formControlName="password"
+        />
+      </fieldset>
 
-    <button type="submit" [disabled]="isSubmitting$ | async">Sign up</button>
-  </form>
-</section>
+      <button type="submit" [disabled]="data.isSubmitting">Sign up</button>
+    </form>
+  </section>
+</ng-container>
