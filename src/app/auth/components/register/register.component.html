@@ -24,6 +24,6 @@
       />
     </fieldset>
 
-    <button type="submit">Sign up</button>
+    <button type="submit" [disabled]="isSubmitting$ | async">Sign up</button>
   </form>
 </section>
