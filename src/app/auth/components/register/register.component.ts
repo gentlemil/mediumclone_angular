@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../store/types/registerRequest.interface';
-import { selectIsSubmitting } from '../../store/selectors';
+import { selectIsSubmitting } from '../../store/reducers';
 import { AuthStateInterface } from '../../store/types/authState.interface';
 import { CommonModule } from '@angular/common';
 
