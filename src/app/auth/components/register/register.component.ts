@@ -7,11 +7,11 @@ import {
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { register } from '../../store/actions';
-import { RegisterRequestInterface } from '../../store/types/registerRequest.interface';
+import { authActions } from '../../store/actions';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { selectIsSubmitting } from '../../store/reducers';
-import { AuthStateInterface } from '../../store/types/authState.interface';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +31,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<{ auth: AuthStateInterface }>
+    private store: Store,
+    private authService: AuthService
   ) {}
 
   onSubmit() {
@@ -39,6 +40,9 @@ export class RegisterComponent {
     const request: RegisterRequestInterface = {
       user: this.form.getRawValue(),
     };
-    this.store.dispatch(register({ request }));
+    this.store.dispatch(authActions.register({ request }));
+
+    // cors error
+    this.authService.register(request).subscribe((res) => console.log(res));
   }
 }

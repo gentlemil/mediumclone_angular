@@ -1,24 +1,31 @@
-<section class="w-full container mx-auto">
+<section
+  class="w-full container mx-auto flex flex-col justify-center items-center"
+>
   <a routerLink="/login">Have an account?</a>
   <p>backend errors here</p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <fieldset>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-[500px]">
+    <fieldset class="mb-2 w-full">
       <input
         type="text"
-        class=""
+        class="w-full"
         placeholder="username"
         formControlName="username"
       />
     </fieldset>
 
-    <fieldset>
-      <input type="text" class="" placeholder="Email" formControlName="email" />
+    <fieldset class="mb-2">
+      <input
+        type="text"
+        class="w-full"
+        placeholder="Email"
+        formControlName="email"
+      />
     </fieldset>
 
-    <fieldset>
+    <fieldset class="mb-2">
       <input
         type="password"
-        class=""
+        class="w-full"
         placeholder="password"
         formControlName="password"
       />
