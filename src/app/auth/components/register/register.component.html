@@ -1,0 +1,29 @@
+<section class="w-full container mx-auto">
+  <a routerLink="/login">Have an account?</a>
+  <p>backend errors here</p>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <input
+        type="text"
+        class=""
+        placeholder="username"
+        formControlName="username"
+      />
+    </fieldset>
+
+    <fieldset>
+      <input type="text" class="" placeholder="Email" formControlName="email" />
+    </fieldset>
+
+    <fieldset>
+      <input
+        type="password"
+        class=""
+        placeholder="password"
+        formControlName="password"
+      />
+    </fieldset>
+
+    <button type="submit">Sign up</button>
+  </form>
+</section>
