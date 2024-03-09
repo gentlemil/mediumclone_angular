@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BackendErrorsInterface } from '../../types/backendErrors.interface';
 import { NgFor } from '@angular/common';
 
@@ -14,14 +9,6 @@ import { NgFor } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgFor],
 })
-export class BackendErrorMessagesComponent implements OnInit {
-  @Input({ required: true }) backendErrors: BackendErrorsInterface = {};
-  errorMessages: string[] = [];
-
-  ngOnInit() {
-    this.errorMessages = Object.keys(this.backendErrors).map((name: string) => {
-      const messages: any = this.backendErrors[name].join(' ');
-      return `${name} ${messages}`;
-    });
-  }
+export class BackendErrorMessagesComponent {
+  @Input({ required: true }) backendErrors: BackendErrorsInterface | any = [];
 }

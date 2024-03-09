@@ -27,7 +27,7 @@ export const registerEffect = createEffect(
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.registerFailure({
-                errors: errorResponse.error.errors,
+                errors: errorResponse.error.message,
               })
             );
           })
@@ -69,7 +69,7 @@ export const loginEffect = createEffect(
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
               authActions.loginFailure({
-                errors: errorResponse.error.errors,
+                errors: errorResponse.error.message,
               })
             );
           })
