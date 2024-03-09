@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../layout/header/header.component';
-import { FooterComponent } from '../layout/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { Store } from '@ngrx/store';
+import { authActions } from './auth/store/actions';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,10 @@ import { FooterComponent } from '../layout/footer/footer.component';
   templateUrl: './app.component.html',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(authActions.getCurrentUser());
+  }
+}
