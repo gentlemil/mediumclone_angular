@@ -2,7 +2,7 @@
   <section
     class="w-full container mx-auto flex flex-col justify-center items-center"
   >
-    <a routerLink="/login">Have an account?</a>
+    <a routerLink="/register">Need an account?</a>
 
     <mc-backend-error-messages
       [backendErrors]="data.backendErrors"
@@ -10,15 +10,6 @@
     ></mc-backend-error-messages>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-[500px]">
-      <fieldset class="mb-2 w-full">
-        <input
-          type="text"
-          class="w-full"
-          placeholder="username"
-          formControlName="username"
-        />
-      </fieldset>
-
       <fieldset class="mb-2">
         <input
           type="text"
@@ -37,7 +28,7 @@
         />
       </fieldset>
 
-      <button type="submit" [disabled]="data.isSubmitting">Sign up</button>
+      <button type="submit" [disabled]="data.isSubmitting">Log in</button>
     </form>
   </section>
 </ng-container>

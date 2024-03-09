@@ -8,7 +8,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
-import { RegisterRequestInterface } from '../../types/registerRequest.interface';
+import { LoginRequestInterface } from '../../types/loginRequest.interface';
 import {
   selectIsSubmitting,
   selectValidationErrors,
@@ -18,10 +18,10 @@ import { combineLatest } from 'rxjs';
 import { BackendErrorMessagesComponent } from '../../../shared/components/backend-error-messages/backend-error-messages.component';
 
 @Component({
-  selector: 'mc-register',
+  selector: 'mc-login',
   standalone: true,
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
@@ -31,9 +31,8 @@ import { BackendErrorMessagesComponent } from '../../../shared/components/backen
     BackendErrorMessagesComponent,
   ],
 })
-export class RegisterComponent {
+export class LoginComponent {
   form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
@@ -43,13 +42,13 @@ export class RegisterComponent {
     backendErrors: this.store.select(selectValidationErrors),
   });
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   onSubmit() {
-    const request: RegisterRequestInterface = {
+    const request: LoginRequestInterface = {
       user: this.form.getRawValue(),
     };
 
-    this.store.dispatch(authActions.register({ request }));
+    this.store.dispatch(authActions.login({ request }));
   }
 }
