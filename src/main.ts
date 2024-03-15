@@ -7,17 +7,18 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
 import { authFeatureKey, authReducer } from './app/auth/store/reducers';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import * as authEffects from './app/auth/store/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
+import { AuthInterceptor } from './app/shared/services/authInterceptor';
 
 // bootstrapApplication(AppComponent, appConfig)
 //   .catch((err) => console.error(err));
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([AuthInterceptor])),
     provideRouter(appRoutes),
     provideStore({
       router: routerReducer,
