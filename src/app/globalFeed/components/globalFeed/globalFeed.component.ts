@@ -8,4 +8,6 @@ import { FeedComponent } from '../../../shared/components/feed/feed.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FeedComponent],
 })
-export class GlobalFeedComponent {}
+export class GlobalFeedComponent {
+  apiUrl = '/articles';
+}
