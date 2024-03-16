@@ -10,13 +10,15 @@ import { combineLatest } from 'rxjs';
 import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   standalone: true,
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LoadingComponent, ErrorMessageComponent],
 })
 export class FeedComponent implements OnInit {
   @Input() apiUrl: string = '';
