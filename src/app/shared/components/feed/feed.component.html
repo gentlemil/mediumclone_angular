@@ -23,9 +23,15 @@
         <h1>{{ article.title }}</h1>
         <p>{{ article.description }}</p>
         <span>Read more...</span>
-        TAG LIST
+        <app-tag-list [tags]="article.tagList"></app-tag-list>
       </a>
     </div>
-    PAGINATION
+
+    <app-pagination
+      [total]="data.feed.articlesCount"
+      [limit]="limit"
+      [url]="baseUrl"
+      [currentPage]="currentPage"
+    ></app-pagination>
   </div>
 </ng-container>
