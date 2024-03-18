@@ -1,29 +1,27 @@
+import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { feedActions } from './store/actions';
-import { combineLatest } from 'rxjs';
-import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
-import { ErrorMessageComponent } from '../error-message/error-message.component';
+import { Store } from '@ngrx/store';
+import { combineLatest, of } from 'rxjs';
+import { ErrorMessageComponent } from '../errorMessage/errorMessage.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { environment } from '../../../../environments/environment';
+import { feedActions } from './store/actions';
+import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
 import queryString from 'query-string';
-import { TagListComponent } from '../tagList/tag-list.component';
+import { TagListComponent } from '../tagList/tagList.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
-  standalone: true,
-  selector: 'app-feed',
+  selector: 'mc-feed',
   templateUrl: './feed.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
     CommonModule,
     RouterLink,
@@ -41,8 +39,7 @@ export class FeedComponent implements OnInit, OnChanges {
     error: this.store.select(selectError),
     feed: this.store.select(selectFeedData),
   });
-
-  limit = environment.limit || 20;
+  limit = environment.limit;
   baseUrl = this.router.url.split('?')[0];
   currentPage: number = 0;
 

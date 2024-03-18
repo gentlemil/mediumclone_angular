@@ -1,7 +1,7 @@
+import { routerNavigationAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { FeedStateInterface } from '../types/feedState.interface';
 import { feedActions } from './actions';
-import { routerNavigationAction } from '@ngrx/router-store';
 
 const initialState: FeedStateInterface = {
   isLoading: false,
@@ -20,7 +20,7 @@ const feedFeature = createFeature({
       data: action.feed,
     })),
     on(feedActions.getFeedFailure, (state) => ({ ...state, isLoading: false })),
-    on(routerNavigationAction, () => initialState) // reset state to initial when user jump to other page
+    on(routerNavigationAction, () => initialState)
   ),
 });
 

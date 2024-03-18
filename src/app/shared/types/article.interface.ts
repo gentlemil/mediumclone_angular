@@ -1,13 +1,14 @@
+import { PopularTagType } from './popularTag.type';
 import { ProfileInterface } from './profile.interface';
 
 export interface ArticleInterface {
   body: string;
   createdAt: string;
   description: string;
-  favourited: boolean;
-  favouritedCount: number;
+  favorited: boolean;
+  favoritesCount: number;
   slug: string;
-  tagList: string[];
+  tagList: PopularTagType[];
   title: string;
   updatedAt: string;
   author: ProfileInterface;

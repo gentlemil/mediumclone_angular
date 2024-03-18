@@ -1,16 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
-  selector: 'app-banner',
+  selector: 'mc-banner',
   templateUrl: './banner.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink],
+  standalone: true,
 })
-export class BannerComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class BannerComponent {}

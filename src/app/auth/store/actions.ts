@@ -1,8 +1,8 @@
-import { BackendErrorsInterface } from './../../shared/types/backendErrors.interface';
-import { CurrentUserInterface } from './../../shared/types/currentUser.interface';
-import { RegisterRequestInterface } from '../types/registerRequest.interface';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { LoginRequestInterface } from '../types/loginRequest.interface';
+import { RegisterRequestInterface } from '../types/registerRequest.interface';
+import { BackendErrorsInterface } from '../../shared/types/backendErrors.interface';
+import { CurrentUserInterface } from '../../shared/types/currentUser.interface';
 
 export const authActions = createActionGroup({
   source: 'auth',
@@ -20,22 +20,3 @@ export const authActions = createActionGroup({
     'Get current user failure': emptyProps(),
   },
 });
-
-// we have three states of every action: start, success and failure
-// by using bit of suger we can write it in shorter way getting
-// the same result (check above)
-
-// export const register = createAction(
-//   '[Auth Register]',
-//   props<{ request: RegisterRequestInterface }>()
-// );
-
-// export const registerSuccess = createAction(
-//   '[Auth Register Success]',
-//   props<{ request: RegisterRequestInterface }>()
-// );
-
-// export const registerFailure = createAction(
-//   '[Auth Register Failure]',
-//   props<{ request: RegisterRequestInterface }>()
-// );

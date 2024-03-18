@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  standalone: true,
-  selector: 'app-loading',
+  selector: 'mc-loading',
   template: '<div>Loading...</div>',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class LoadingComponent {}

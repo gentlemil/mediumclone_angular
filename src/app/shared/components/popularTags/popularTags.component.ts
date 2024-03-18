@@ -1,23 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { popularTagsActions } from './store/actions';
 import { combineLatest } from 'rxjs';
+import { ErrorMessageComponent } from '../errorMessage/errorMessage.component';
+import { LoadingComponent } from '../loading/loading.component';
+import { popularTagsActions } from './store/actions';
 import {
   selectError,
   selectIsLoading,
   selectPopularTagsData,
 } from './store/reducers';
-import { LoadingComponent } from '../loading/loading.component';
-import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
+  selector: 'mc-popular-tags',
+  templateUrl: './popularTags.component.html',
   standalone: true,
-  selector: 'app-popular-tags',
-  templateUrl: './popular-tags.components.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LoadingComponent, ErrorMessageComponent],
+  imports: [CommonModule, LoadingComponent, ErrorMessageComponent, RouterLink],
 })
 export class PopularTagsComponent implements OnInit {
   data$ = combineLatest({
@@ -25,7 +24,6 @@ export class PopularTagsComponent implements OnInit {
     isLoading: this.store.select(selectIsLoading),
     error: this.store.select(selectError),
   });
-
   constructor(private store: Store) {}
 
   ngOnInit(): void {

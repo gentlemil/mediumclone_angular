@@ -1,15 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCurrentUser } from '../../../auth/store/reducers';
 
 @Component({
+  selector: 'mc-feed-toggler',
+  templateUrl: './feedToggler.component.html',
   standalone: true,
-  selector: 'app-feed-toggler',
-  templateUrl: './feed-toggler.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
 })
 export class FeedTogglerComponent {
   @Input() tagName?: string;

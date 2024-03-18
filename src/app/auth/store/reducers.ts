@@ -1,12 +1,12 @@
+import { routerNavigationAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { AuthStateInterface } from '../types/authState.interface';
 import { authActions } from './actions';
-import { routerNavigationAction } from '@ngrx/router-store';
 
 const initialState: AuthStateInterface = {
   isSubmitting: false,
-  currentUser: undefined,
   isLoading: false,
+  currentUser: undefined,
   validationErrors: null,
 };
 
@@ -14,8 +14,6 @@ const authFeature = createFeature({
   name: 'auth',
   reducer: createReducer(
     initialState,
-
-    // --- register ---
     on(authActions.register, (state) => ({
       ...state,
       isSubmitting: true,
@@ -31,8 +29,6 @@ const authFeature = createFeature({
       isSubmitting: false,
       validationErrors: action.errors,
     })),
-
-    // --- login ---
     on(authActions.login, (state) => ({
       ...state,
       isSubmitting: true,
@@ -48,8 +44,6 @@ const authFeature = createFeature({
       isSubmitting: false,
       validationErrors: action.errors,
     })),
-
-    // --- get current user ---
     on(authActions.getCurrentUser, (state) => ({
       ...state,
       isLoading: true,
@@ -64,8 +58,6 @@ const authFeature = createFeature({
       isLoading: false,
       currentUser: null,
     })),
-
-    // --- navigation between routes
     on(routerNavigationAction, (state) => ({
       ...state,
       validationErrors: null,

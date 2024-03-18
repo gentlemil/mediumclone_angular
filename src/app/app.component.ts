@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { Store } from '@ngrx/store';
-import { authActions } from './auth/store/actions';
+import {Component, OnInit} from '@angular/core'
+import {RouterOutlet} from '@angular/router'
+import {Store} from '@ngrx/store'
+import {authActions} from './auth/store/actions'
+import {TopBarComponent} from './shared/components/topBar/topBar.component'
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   templateUrl: './app.component.html',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  standalone: true,
+  imports: [RouterOutlet, TopBarComponent],
 })
 export class AppComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(authActions.getCurrentUser());
+    this.store.dispatch(authActions.getCurrentUser())
   }
 }

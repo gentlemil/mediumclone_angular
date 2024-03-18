@@ -1,34 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
-import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import {
   selectIsSubmitting,
   selectValidationErrors,
 } from '../../store/reducers';
-import { CommonModule } from '@angular/common';
-import { combineLatest } from 'rxjs';
-import { BackendErrorMessagesComponent } from '../../../shared/components/backend-error-messages/backend-error-messages.component';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
+import { BackendErrorMessages } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
   selector: 'mc-register',
-  standalone: true,
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
-    RouterLink,
-    FormsModule,
     ReactiveFormsModule,
+    RouterLink,
     CommonModule,
-    BackendErrorMessagesComponent,
+    BackendErrorMessages,
   ],
 })
 export class RegisterComponent {
@@ -37,7 +29,6 @@ export class RegisterComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-
   data$ = combineLatest({
     isSubmitting: this.store.select(selectIsSubmitting),
     backendErrors: this.store.select(selectValidationErrors),
@@ -46,10 +37,10 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
+    console.log('form', this.form.getRawValue());
     const request: RegisterRequestInterface = {
       user: this.form.getRawValue(),
     };
-
     this.store.dispatch(authActions.register({ request }));
   }
 }

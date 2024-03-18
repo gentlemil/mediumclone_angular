@@ -1,34 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { combineLatest } from 'rxjs';
 import { authActions } from '../../store/actions';
-import { LoginRequestInterface } from '../../types/loginRequest.interface';
 import {
   selectIsSubmitting,
   selectValidationErrors,
 } from '../../store/reducers';
-import { CommonModule } from '@angular/common';
-import { combineLatest } from 'rxjs';
-import { BackendErrorMessagesComponent } from '../../../shared/components/backend-error-messages/backend-error-messages.component';
+import { LoginRequestInterface } from '../../types/loginRequest.interface';
+import { BackendErrorMessages } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
   selector: 'mc-login',
-  standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [
-    RouterLink,
-    FormsModule,
     ReactiveFormsModule,
+    RouterLink,
     CommonModule,
-    BackendErrorMessagesComponent,
+    BackendErrorMessages,
   ],
 })
 export class LoginComponent {
@@ -36,19 +28,17 @@ export class LoginComponent {
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-
   data$ = combineLatest({
     isSubmitting: this.store.select(selectIsSubmitting),
     backendErrors: this.store.select(selectValidationErrors),
   });
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
     const request: LoginRequestInterface = {
       user: this.form.getRawValue(),
     };
-
     this.store.dispatch(authActions.login({ request }));
   }
 }
