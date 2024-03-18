@@ -65,4 +65,8 @@ export class ArticleComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(articleActions.getArticle({ slug: this.slug }));
   }
+
+  deleteArticle(): void {
+    this.store.dispatch(articleActions.deleteArticle({ slug: this.slug }));
+  }
 }
