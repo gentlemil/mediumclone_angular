@@ -11,12 +11,17 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import * as authEffects from './app/auth/store/effects';
 import * as feedEffects from './app/shared/components/feed/store/effects';
+import * as popularTagsEffect from './app/shared/components/popular-tags/store/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { AuthInterceptor } from './app/shared/services/authInterceptor';
 import {
   feedFeatureKey,
   feedReducer,
 } from './app/shared/components/feed/store/reducers';
+import {
+  popularTagsFeatureKey,
+  popularTagsReducer,
+} from './app/shared/components/popular-tags/store/reducers';
 
 // bootstrapApplication(AppComponent, appConfig)
 //   .catch((err) => console.error(err));
@@ -31,7 +36,8 @@ bootstrapApplication(AppComponent, {
     provideRouterStore(),
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
-    provideEffects(authEffects, feedEffects),
+    provideState(popularTagsFeatureKey, popularTagsReducer),
+    provideEffects(authEffects, feedEffects, popularTagsEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -41,3 +47,5 @@ bootstrapApplication(AppComponent, {
     }),
   ],
 });
+
+// make a test
