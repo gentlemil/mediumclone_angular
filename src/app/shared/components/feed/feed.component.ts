@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { feedActions } from './store/actions';
@@ -31,7 +33,7 @@ import { TagListComponent } from '../tagList/tag-list.component';
     TagListComponent,
   ],
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
   @Input() apiUrl: string = '';
 
   data$ = combineLatest({
@@ -53,11 +55,21 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || '1');
-      this.fetchPage();
+      this.fetchFeed();
     });
   }
 
-  fetchPage(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    const isApiUrlChanged =
+      !changes['apiUrl'].firstChange &&
+      changes['apiUrl'].currentValue !== changes['apiUrl'].previousValue;
+
+    if (isApiUrlChanged) {
+      this.fetchFeed();
+    }
+  }
+
+  fetchFeed(): void {
     const offset = this.currentPage * this.limit - this.limit;
     const parsedUrl = queryString.parseUrl(this.apiUrl);
     const stringifiedParams = queryString.stringify({

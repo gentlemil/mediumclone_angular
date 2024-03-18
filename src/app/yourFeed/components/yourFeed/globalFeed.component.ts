@@ -6,8 +6,8 @@ import { FeedTogglerComponent } from '../../../shared/components/feed-toggler/fe
 
 @Component({
   standalone: true,
-  selector: 'app-global-feed',
-  templateUrl: './globalFeed.component.html',
+  selector: 'app-your-feed',
+  templateUrl: './yourFeed.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FeedComponent,
@@ -16,6 +16,6 @@ import { FeedTogglerComponent } from '../../../shared/components/feed-toggler/fe
     FeedTogglerComponent,
   ],
 })
-export class GlobalFeedComponent {
-  apiUrl = '/articles';
+export class YourFeedComponent {
+  apiUrl = '/articles/feed';
 }
