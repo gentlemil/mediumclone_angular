@@ -1,4 +1,4 @@
-import { ArticleInterface } from '../../../types/article.interface';
+import { ArticleInterface } from './article.interface';
 
 export interface ArticleResponseInterface {
   article: ArticleInterface;

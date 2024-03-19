@@ -10,6 +10,7 @@ import {
   selectValidationErrors,
 } from '../../store/reducers';
 import { LoginRequestInterface } from '../../types/loginRequest.interface';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { BackendErrorMessages } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({

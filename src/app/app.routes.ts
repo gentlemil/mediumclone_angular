@@ -8,8 +8,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'login',
-    loadChildren: () =>
-      import('./auth/auth.routes.js').then((m) => m.loginRoutes),
+    loadChildren: () => import('./auth/auth.routes').then((m) => m.loginRoutes),
   },
   {
     path: '',
@@ -35,5 +34,10 @@ export const appRoutes: Route[] = [
     path: 'articles/:slug',
     loadChildren: () =>
       import('./article/article.routes').then((m) => m.routes),
+  },
+  {
+    path: 'articles/:slug/edit',
+    loadChildren: () =>
+      import('./editArticle/editArticle.routes').then((m) => m.routes),
   },
 ];
