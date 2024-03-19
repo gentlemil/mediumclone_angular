@@ -6,7 +6,7 @@ import * as articleEffects from './store/effects';
 import { articleFeatureKey, articleReducer } from './store/reducers';
 import { ArticleService } from './services/article.service';
 
-export const router: Route[] = [
+export const routes: Route[] = [
   {
     path: '',
     component: ArticleComponent,
