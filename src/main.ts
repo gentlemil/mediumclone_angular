@@ -23,6 +23,8 @@ import {
   popularTagsReducer,
 } from './app/shared/components/popularTags/store/reducers';
 import { AddToFavoritesService } from './app/shared/components/addToFavorites/services/addToFavorites.service';
+import { CreateCommentService } from './app/createComment/services/createComment.service';
+import { CommentsService } from './app/comments/services/comments.service';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -43,11 +45,13 @@ bootstrapApplication(AppComponent, {
     ),
     provideStoreDevtools({
       maxAge: 25,
-      logOnly: !isDevMode(), 
+      logOnly: !isDevMode(),
       autoPause: true,
       trace: false,
       traceLimit: 75,
     }),
     AddToFavoritesService,
+    CreateCommentService,
+    CommentsService,
   ],
 });

@@ -1,0 +1,29 @@
+<ng-container *ngIf="comments">
+  <div class="article-page">
+    <ul>
+      <li *ngFor="let comment of comments">
+        <div class="pb-4">
+          <div class="article-meta flex justify-between items-center">
+            <div class="flex justify-start items-center ga-4">
+              <a [routerLink]="['/profiles', comment.user.username]">
+                <img [src]="comment.user.image" />
+              </a>
+
+              <div class="info">
+                <a [routerLink]="['/profiles', comment.user.username]">
+                  {{ comment.user.username }}
+                </a>
+              </div>
+            </div>
+            <span class="data">{{
+              comment.createdAt | date : "dd.MM.yyyy"
+            }}</span>
+          </div>
+          <p class="italic">
+            {{ comment.content }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</ng-container>

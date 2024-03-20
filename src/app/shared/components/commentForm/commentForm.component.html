@@ -1,0 +1,35 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <mc-backend-error-messages
+          *ngIf="errors"
+          [backendErrors]="errors"
+        ></mc-backend-error-messages>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <fieldset>
+            <fieldset class="form-group">
+              <textarea
+                class="form-control form-control-lg"
+                rows="8"
+                placeholder="Write your comment"
+                formControlName="content"
+              ></textarea>
+            </fieldset>
+
+            <fieldset>
+              <button
+                type="submit"
+                class="btn btn-lg pull-xs-right btn-primary"
+                [disabled]="form.invalid || isSubmitting"
+              >
+                Publish comment
+              </button>
+            </fieldset>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

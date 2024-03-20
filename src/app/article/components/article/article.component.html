@@ -1,53 +1,80 @@
 <ng-container *ngIf="data$ | async as data">
+  <!-- <h1>adding comment state: {{ data.isCommentAdd | json }}</h1> -->
   <div class="article-page">
-    <div class="banner">
-      <div class="container" *ngIf="data.article">
-        <h1>{{ data.article.title }}</h1>
+    <div class="container">
+      <div class="banner">
+        <div class="container" *ngIf="data.article">
+          <h1>{{ data.article.title }}</h1>
 
-        <div class="article-meta">
-          <a [routerLink]="['/profiles', data.article.author.username]">
-            <img [src]="data.article.author.image" />
-          </a>
-
-          <div class="info">
+          <div class="article-meta">
             <a [routerLink]="['/profiles', data.article.author.username]">
-              {{ data.article.author.username }}
+              <img [src]="data.article.author.image" />
             </a>
-            <span class="data">{{ data.article.createdAt }}</span>
+
+            <div class="info">
+              <a [routerLink]="['/profiles', data.article.author.username]">
+                {{ data.article.author.username }}
+              </a>
+              <span class="data">{{ data.article.createdAt }}</span>
+            </div>
+
+            <span *ngIf="data.isAuthor">
+              <a
+                [routerLink]="['/articles', data.article.slug, 'edit']"
+                class="btn btn-outline-secondary btn-sm"
+              >
+                <i class="ion-edit"></i>
+                Edit Article
+              </a>
+
+              <button
+                class="btn btn-outline-danger btn-sm"
+                (click)="deleteArticle()"
+              >
+                Delete Article
+              </button>
+            </span>
           </div>
-
-          <span *ngIf="data.isAuthor">
-            <a
-              [routerLink]="['/articles', data.article.slug, 'edit']"
-              class="btn btn-outline-secondary btn-sm"
-            >
-              <i class="ion-edit"></i>
-              Edit Article
-            </a>
-
-            <button
-              class="btn btn-outline-danger btn-sm"
-              (click)="deleteArticle()"
-            >
-              Delete Article
-            </button>
-          </span>
         </div>
       </div>
-    </div>
 
-    <div class="container page">
-      <mc-loading *ngIf="data.isLoading"></mc-loading>
-      <mc-error-message *ngIf="data.error"></mc-error-message>
+      <div class="container page">
+        <mc-loading *ngIf="data.isLoading"></mc-loading>
+        <mc-error-message *ngIf="data.error"></mc-error-message>
 
-      <div class="row article-content" *ngIf="data.article">
-        <div class="col-xs-12">
-          <div>
-            <p>{{ data.article.body }}</p>
+        <div class="row article-content" *ngIf="data.article">
+          <div class="col-xs-12">
+            <div>
+              <p>{{ data.article.body }}</p>
+            </div>
+
+            <mc-tag-list [tags]="data.article.tagList"></mc-tag-list>
           </div>
-
-          <mc-tag-list [tags]="data.article.tagList"></mc-tag-list>
         </div>
+      </div>
+
+      <div class="container page">
+        <ng-container *ngIf="data.currentUser; else noLoggedUser">
+          <div class="border-t flex justify-center items-center w-full">
+            <mc-create-comment class="w-full"></mc-create-comment>
+          </div>
+        </ng-container>
+
+        <ng-template #noLoggedUser>
+          <div class="w-full p-4 flex justify-center items-center">
+            <a routerLink="/login" class="nav-link pr-1 text-green-400"
+              >Sign in </a
+            >or
+            <a routerLink="/register" class="nav-link px-1 text-green-400"
+              >sign up</a
+            >to add comments on this article.
+          </div>
+        </ng-template>
+
+        <mc-comments
+          *ngIf="data.comments"
+          [comments]="data.comments.comments"
+        ></mc-comments>
       </div>
     </div>
   </div>
