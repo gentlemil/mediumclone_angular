@@ -1,27 +1,64 @@
-# MediumcloneAngular
+<h1 align="center">Angular - The modern web developer's platform</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+<p align="center">
+  <img src="aio/src/assets/images/logos/angular/angular_renaissance.png" alt="angular-logo" width="120px" height="120px"/>
+  <br>
+  <em>Angular is a development platform for building mobile and desktop web applications
+    <br> using TypeScript/JavaScript and other languages.</em>
+  <br>
+</p>
 
-## Development server
+<p align="center">
+  <a href="https://angular.dev/"><strong>angular.dev</strong></a>
+  <br>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Description
 
-## Code scaffolding
+Part of MULTIREPO MVC _(Model-View-Controller)_ application application that is a clone of **Medium.com**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Authentication: register, login, update user profile, keep user session,
+Available features:
 
-## Build
+- create, read, update, delete, like, unlike specific article,
+- follow/ unfollow user,
+- get articles by tags,
+- create and read comments (in progress)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Check here backend application: _https://github.com/gentlemil/mediumclone_nestjs_
 
-## Running unit tests
+## Installation and running the app
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Clone the repository:
 
-## Running end-to-end tests
+```bash
+$ git clone https://github.com/gentlemil/mediumclone_angular.git
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Switch to the repo folder:
+
+```bash
+cd mediumclone_angular
+```
+
+Install dependencies:
+
+```bash
+$ npm install
+```
+
+Run the application:
+
+```bash
+$ ng serve
+```
+
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## License
+
+Nest is [MIT licensed](LICENSE).
